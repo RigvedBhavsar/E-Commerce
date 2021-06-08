@@ -3,14 +3,10 @@ import { Grid }from '@material-ui/core';
 import Product from './Product/Product';
 
 import useStyles from './styles'
-const products= [
-    {id : 1 , name : 'shoes', description :'Runnig Shoes', price:'$100' , image:'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/00370c95-40bc-44f6-9551-c5fe866e245e/flex-experience-run-9-running-shoe-HdHB7f.png'},
-    {id : 2 , name : 'Macbook', description :'Apple Macbook', price:'$1000' , image:'https://www.notebookcheck.net/uploads/tx_nbc2/air13teaser.jpg'},
-    {id : 3 , name : 'Watch', description :'Fossil Watch', price:'$350' , image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyxeeQ2TFUczu5GuoorIDhJLa9gDUsQan2rw&usqp=CAU'}
-];
 
 
-const Products = () => {
+
+const Products = ({products}) => {
 
     const classes = useStyles();
 
