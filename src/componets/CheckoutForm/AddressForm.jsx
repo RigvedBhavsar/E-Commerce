@@ -1,11 +1,12 @@
 import React ,{useState , useEffect} from 'react'
 import {InputLabel , Select , MenuItem  ,Button , Grid , Typography} from '@material-ui/core';
 import {useForm , FormProvider } from 'react-hook-form';
+import {Link} from 'react-router-dom';
 import FormInput from './FormInput';
 import {commerce} from '../../lib/commerce';
 
 
-const AddressForm = ({checkoutToken}) => {
+const AddressForm = ({checkoutToken , next}) => {
     
     const [shippingCountries ,setShippingCountries] = useState([]);    
     const [shippingCountry ,setShippingCountry] = useState('');    
@@ -64,7 +65,7 @@ const AddressForm = ({checkoutToken}) => {
         <>
             <Typography variant="h6" gutterBottom >Shipping Address</Typography>
             <FormProvider {...methods}>
-                <form onSubmit=''>
+                <form onSubmit={methods.handleSubmit((data) => next({ ...data , shippingCountry , shippingSubdiv  , shippingOpt }))}>
                     <Grid container spacing={3}>
                         <FormInput  name='firstName' label='First Name' />
                         <FormInput  name='lastName' label='Last Name' />
@@ -73,7 +74,7 @@ const AddressForm = ({checkoutToken}) => {
                         <FormInput  name='city' label='City' />
                         <FormInput  name='zip' label='ZIP / Postal Code' />
                         
-                        
+                        {/* Displaying shipping Contries */}
                         <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Country</InputLabel>
                             <Select value={shippingCountry} fullWidth onChange={(e)=>setShippingCountry(e.target.value)}>
@@ -85,6 +86,7 @@ const AddressForm = ({checkoutToken}) => {
                             </Select>
                         </Grid>
 
+                        {/* Displaying Subdivisions of Each Country */}
                         <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping SubDivision</InputLabel>
                             <Select value={shippingSubdiv} fullWidth onChange={(e)=>setShippingSubdiv(e.target.value)}>
@@ -96,6 +98,7 @@ const AddressForm = ({checkoutToken}) => {
                             </Select>
                         </Grid>
 
+                        {/* Displaying Shipping option */}
                         <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Option</InputLabel>
                             <Select value={shippingOpt} fullWidth onChange={(e)=>setShippingOpt(e.target.value)}>
@@ -108,6 +111,11 @@ const AddressForm = ({checkoutToken}) => {
                         </Grid>
 
                     </Grid>
+                    <br/>
+                    <div style ={{display:'flex' , justifyContent :'space-between'}}>
+                        <Button component={Link} to='/cart' variant="outlined">Cart</Button>
+                        <Button type="submit" variant="contained" color="primary">Next</Button>
+                    </div>
                 </form>
             </FormProvider>
         </>

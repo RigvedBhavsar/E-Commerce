@@ -20,14 +20,6 @@ const FormInput = ({name , label }) => {
                     />
                 )}
             />
-            {/* <Controller
-                as={TextField}
-                control = {control}
-                fullWidth
-                name={name}
-                label ={label}
-                required={required}
-            /> */}
         </Grid>
     );
 }
